@@ -71,8 +71,8 @@ function move(start,end,rush,car,points){
 		carLayer.clear();
         carLayer.add(carGriphic);
 
-	    if (Math.abs(car.geometry.x - x2) <=v && Math.abs(car.geometry.y - y2)<=v) {
-	        clearInterval(moving); 
+	    if(Math.abs(car.geometry.x - x2) <=v && Math.abs(car.geometry.y - y2)<=v) {
+	        clearInterval(moving);
 			//console.log(start);
 	        start++;
 	        end++; 
