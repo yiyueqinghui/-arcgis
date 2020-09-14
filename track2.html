@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>轨迹回放</title>
+    <title>轨迹回放二(等量划分两点连线，根据指定的最小距离插入相应数目轨迹点位)</title>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <link rel="stylesheet" href="https://js.arcgis.com/3.27/esri/css/esri.css">
     <script src="https://js.arcgis.com/3.27/"></script>
@@ -153,12 +153,11 @@ require(["esri/map",
                 if(index == posList.length - 1) {
                     if(timer) clearTimeout(timer);
                 } else {
-                    var p1 = changePosXY(posList[index]);
+                    var p1 = changePosXY(posList[index]);   //经纬度转墨卡托
                     var p2 = changePosXY(posList[++index]);
                     var tempPoints = interpolation(p1, p2, speed);
                     var angle = Math.ceil(Angle(p1.x, p1.y, p2.x, p2.y))
                     carSymbol.setAngle(angle)   //设置小车角度
-                    console.log(angle);
                     if(Math.abs(angle)>=80 && Math.abs(angle)<=100){
                         if(angle<0){
                             carSymbol.setOffset(-17.5,0);
@@ -173,7 +172,7 @@ require(["esri/map",
                     carIndex=0;
                     play(tempPoints);
  
-                    intvaltime = tempPoints.length*speed2;
+                    intvaltime = tempPoints.length*speed2;  //根据插入的值的多少确定setTimeout下次执行的时间间隔
                     if(index < posList.length-1){
                         runStart();
                     }
@@ -219,6 +218,7 @@ require(["esri/map",
                 i++;
             }
             tmp.push(pointB);//防止插值出来的最后一个点到不了B点
+            console.log(tmp);
             return tmp;
         }
         /*

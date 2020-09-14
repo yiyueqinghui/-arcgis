@@ -52,7 +52,7 @@ function move(start,end,rush,car,points){
         	car.geometry.y+=v;
         }else{
     	    if(x2<x1){
-    			car.geometry.x-=(1/Math.sqrt(1+p*p))*v;
+    			car.geometry.x-=(1/Math.sqrt(1+p*p))*v;     //  Math.sqrt(1+p*p) = 1/cosx
             	car.geometry.y-=(p/Math.sqrt(1 + p * p)) * v; 
             	//计算汽车角度 
              	car.symbol.angle =CalulateXYAnagle(x1,y1,x2,y2);
